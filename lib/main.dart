@@ -10,8 +10,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // home: Halaman1(),      
-      home: Halaman2(),
+      home: Halaman1(),
+      // home: Halaman2(),
     );
   }
 }
@@ -30,7 +30,7 @@ class Halaman1 extends StatelessWidget {
         child: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text("Ini Widget 1"),
               Text("Ini Widget 2"),
@@ -44,7 +44,10 @@ class Halaman1 extends StatelessWidget {
                   print("Hello World");
                 },
                 child: Text("Ini Elevated Button"),
-              )
+              ),
+              Image(
+                image: AssetImage("assets/colorpicker.png"),
+              ),
             ],
           ),
         ),
