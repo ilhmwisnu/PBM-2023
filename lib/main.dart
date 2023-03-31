@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pbm_2023/page/home_page.dart';
+import 'package:pbm_2023/page/profile_page.dart';
+
+import 'page/post_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,76 +14,62 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Halaman1(),
-      // home: Halaman2(),
+      debugShowCheckedModeBanner: false,
+      home: DashboardPage(),
+      routes: {
+        "/dashboard" :(context) => DashboardPage(),
+        "/post" :(context) =>  PostPage()
+      },
     );
   }
 }
 
-// CONTOH Stateless Widget
-class Halaman1 extends StatelessWidget {
-  const Halaman1({super.key});
+class DashboardPage extends StatefulWidget {
+  DashboardPage({super.key});
+
+  @override
+  State<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  int index = 3;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Ini AppBar"),
-      ),
-      body: Center(
-        child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text("Ini Widget 1"),
-              Text("Ini Widget 2"),
-              Container(
-                height: 100,
-                width: 100,
-                color: Colors.amber,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  print("Hello World");
-                },
-                child: Text("Ini Elevated Button"),
-              ),
-              Image(
-                image: AssetImage("assets/colorpicker.png"),
-              ),
-            ],
-          ),
+      body: [
+        HomePage(),
+        Center(
+          child: Text("Explore"),
         ),
-      ),
-    );
-  }
-}
-
-// CONTOH Stateful Widget
-class Halaman2 extends StatefulWidget {
-  const Halaman2({super.key});
-
-  @override
-  State<Halaman2> createState() => _Halaman2State();
-}
-
-class _Halaman2State extends State<Halaman2> {
-  int angka = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Counter App"),
-      ),
-      body: Center(child: Text(angka.toString())),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          angka = angka + 1;
-          setState(() {});
+        Center(
+          child: Text("Post"),
+        ),
+        Center(
+          child: Text("Reels"),
+        ),
+        ProfilePage()
+      ][index],
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (value) {
+          setState(() {
+            index = value;
+          });
         },
+        unselectedItemColor: Colors.black,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        selectedItemColor: Colors.black,
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add_box_outlined), label: "Post"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.video_collection_outlined), label: "Reels"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+        ],
       ),
     );
   }
