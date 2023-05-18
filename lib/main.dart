@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pbm_2023/page/drawer_page.dart';
 import 'package:pbm_2023/page/form_page.dart';
 import 'package:pbm_2023/page/stack_page.dart';
 
@@ -13,10 +14,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "/form",
+      initialRoute: "/stack",
       routes: {
-        "/form" :(context) => FormPage(),
-        "/stack" :(context) => StackPage()
+        "/form": (context) => const FormPage(),
+        "/stack": (context) => const StackPage(),
+        "/drawer": (context) => const DrawerPage()
       },
     );
   }
